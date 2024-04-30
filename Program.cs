@@ -1,3 +1,6 @@
+using TSSDependencyInjection.Services.Implementations;
+using TSSDependencyInjection.Services.Interfaces;
+
 namespace TSSDependencyInjection
 {
     public class Program
@@ -8,6 +11,10 @@ namespace TSSDependencyInjection
 
             // Add services to the container.
             builder.Services.AddRazorPages();
+
+            builder.Services.AddScoped<IScopeService, OperationService>();
+            builder.Services.AddTransient<ITransientService, OperationService>();
+            builder.Services.AddSingleton<ISingletonService, OperationService>();
 
             var app = builder.Build();
 
@@ -21,7 +28,7 @@ namespace TSSDependencyInjection
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
+            
             app.UseRouting();
 
             app.UseAuthorization();

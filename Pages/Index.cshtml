@@ -2,9 +2,73 @@
 @model IndexModel
 @{
     ViewData["Title"] = "Home page";
+    Model.OnGet();
+}
+
+@section Styles {
+    <style>
+        table {
+            border: 1px solid
+        }
+
+        table thead .col1 {
+            width: 200px;
+        }
+
+            table thead .col2 {
+                width: 400px;
+            }
+
+            table thead .col3 {
+                width: 400px;
+            }
+
+        .transient{
+                background-color:lightgray;
+        }
+
+        .scope{
+                background-color: lightseagreen;
+        }
+
+        .singleton{
+            background-color: lightcoral;
+        }
+        
+    </style>
 }
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+
+<div>
+    <table>
+        <thead>
+            <tr>
+                <th class="col1">Service type</th>
+                <th class="col2">First Instance Operation ID</th>
+                <th class="col3">Second Instance Operation ID</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="transient">
+                <td>Transient Service</td>
+                <td>@ViewData["Transient1_Id"]</td>
+                <td>@ViewData["Transient2_Id"]</td>
+            </tr>
+            <tr class="scope">
+                <td>Scope Service</td>
+                <td>@ViewData["Scope1_Id"]</td>
+                <td>@ViewData["Scope2_Id"]</td>
+            </tr>
+            <tr class="singleton">
+                <td>Singleton Service</td>
+                <td>@ViewData["Singleton1_Id"]</td>
+                <td>@ViewData["Singleton2_Id"]</td>
+            </tr>
+
+        </tbody>
+    </table>
 </div>
